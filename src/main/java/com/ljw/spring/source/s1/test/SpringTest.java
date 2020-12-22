@@ -13,4 +13,8 @@ public class SpringTest {
         Student bean = applicationContext.getBean(Student.class);
         System.out.println(bean.getName());
     }
+
+
+
+
 }
