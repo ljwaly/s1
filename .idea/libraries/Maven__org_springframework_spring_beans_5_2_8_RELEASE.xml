@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="Maven: org.springframework:spring-beans:5.2.8.RELEASE">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../../idea_work1/work_spring_source/ljw/spring-framework/spring-beans/build/libs/spring-beans-5.2.8.RELEASE.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../../../idea_work1/work_spring_source/ljw/spring-framework/spring-beans" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../../../../maven/.m2/org/springframework/spring-beans/5.2.8.RELEASE/spring-beans-5.2.8.RELEASE-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../../../../idea_work1/work_spring_source/ljw/spring-framework/spring-beans" />
+      <root url="file://$PROJECT_DIR$/../../../../idea_work1/work_spring_source/ljw/spring-framework/spring-beans/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../../../../idea_work1/work_spring_source/ljw/spring-framework/spring-beans/src/testFixtures/java" />
+      <root url="file://$PROJECT_DIR$/../../../../idea_work1/work_spring_source/ljw/spring-framework/spring-beans/src/test/java" />
+    </SOURCES>
+  </library>
+</component>
