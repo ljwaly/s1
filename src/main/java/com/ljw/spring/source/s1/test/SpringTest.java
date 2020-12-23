@@ -1,6 +1,8 @@
 package com.ljw.spring.source.s1.test;
 
 import com.ljw.spring.source.s1.beans.Star2;
+import com.ljw.spring.source.s1.factorymethod.vo.FactoryMethodLjw;
+import com.ljw.spring.source.s1.factorymethod.vo.FactoryMethodLjw2;
 import com.ljw.spring.source.s1.listener.LjwApplicationListener;
 import com.ljw.spring.source.s1.listener.event.LjwEvent;
 import com.ljw.spring.source.s1.listener.event.LjwEvent1;
@@ -8,7 +10,7 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import com.ljw.spring.source.s1.vo.Student;
+import com.ljw.spring.source.s1.beans.Student;
 
 public class SpringTest {
 
@@ -22,6 +24,15 @@ public class SpringTest {
         ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
         Student bean = applicationContext.getBean(Student.class);
         System.out.println(bean.getName());
+
+        FactoryMethodLjw factoryMethodLjw = applicationContext.getBean(FactoryMethodLjw.class);
+        System.out.println(factoryMethodLjw.getName());
+
+        FactoryMethodLjw2 fctoryMethodLjw2 = applicationContext.getBean(FactoryMethodLjw2.class);
+        System.out.println(fctoryMethodLjw2.getName());
+
+
+
 
     }
 

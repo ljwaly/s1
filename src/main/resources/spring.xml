@@ -19,7 +19,7 @@
     </context:component-scan>
 
 <!--    <import resource="spring.xml"/>-->
-    <bean id="student" class="com.ljw.spring.source.s1.vo.Student"/>
+    <bean id="student" class="com.ljw.spring.source.s1.beans.Student"/>
 
     <bean id="factoryMethodBean" class="com.ljw.spring.source.s1.factorymethod.FactoryMethodBean" ></bean>
     <bean id="factoryMethodLjw" factory-bean="factoryMethodBean" factory-method="getFactoryMethodLjwBean"></bean>

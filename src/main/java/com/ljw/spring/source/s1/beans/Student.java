@@ -1,4 +1,4 @@
-package com.ljw.spring.source.s1.vo;
+package com.ljw.spring.source.s1.beans;
 
 /**
  * @Auth lijinwu
