@@ -1,10 +1,18 @@
-### IntelliJ IDEA ###
+# IntelliJ project files
 .idea
-*.iws
 *.iml
-*.ipr
+out
+gen
+/.apt_generated/
+/.classpath
+/.factorypath
+/.project
+/.settings/
+/.springBeans
+/target/
+/.gitignore
+/user-profile-analysis.iml
+/.idea
+/README.md
 .DS_Store
-Maven*.xml
-target
-
-
+/.idea/libraries
