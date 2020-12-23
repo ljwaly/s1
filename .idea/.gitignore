@@ -17,7 +17,7 @@ gen
 /.project
 /.settings/
 /.springBeans
-/target/
+#/target/
 /.gitignore
 /user-profile-analysis.iml
 /.idea

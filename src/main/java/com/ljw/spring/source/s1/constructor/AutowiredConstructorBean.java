@@ -5,9 +5,19 @@ import com.ljw.spring.source.s1.beans.SC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
+
 @Component
 public class AutowiredConstructorBean {
 
+
+    //侵入性强，spring的注解
+    @Autowired
+    private SC sc;
+
+    //jdk注解，在
+    @Resource
+    private CQ cq;
 
     /**
      * 结论：
@@ -19,7 +29,7 @@ public class AutowiredConstructorBean {
      * @param sc
      * @param cq
      */
-    @Autowired
+    @Autowired(required = false)
     public AutowiredConstructorBean (SC sc, CQ cq) {
         System.out.println("cq = " + cq);
         System.out.println("sc = " + sc);
@@ -27,7 +37,7 @@ public class AutowiredConstructorBean {
 
     }
 
-    @Autowired
+    @Autowired(required = false)
     public AutowiredConstructorBean (SC sc) {
 
         System.out.println("sc = " + sc);
@@ -35,4 +45,11 @@ public class AutowiredConstructorBean {
 
     }
 
+    public SC getSc() {
+        return sc;
+    }
+
+    public CQ getCq() {
+        return cq;
+    }
 }
