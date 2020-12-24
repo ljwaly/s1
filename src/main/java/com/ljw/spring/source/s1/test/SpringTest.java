@@ -15,6 +15,17 @@ import com.ljw.spring.source.s1.beans.Student;
 
 public class SpringTest {
 
+    public static void main(String[] args) {
+        String s2 =  new String("张") + new String("三");
+        String s3 = s2.intern();
+        String s1 = "张三";
+
+        System.out.println(s2 == s1);
+        System.out.println(s2 == s3);
+        System.out.println(s3 == s1);
+
+    }
+
 
     /**
      * xml式启动ApplicationContext
@@ -93,7 +104,7 @@ public class SpringTest {
 
         ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
         AutowiredConstructorBean bean = applicationContext.getBean(AutowiredConstructorBean.class);
-        System.out.println(bean.getSc());
+        System.out.println("使坏：sc = " + bean.getSc());
 
 
     }
