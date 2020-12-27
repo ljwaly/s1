@@ -110,5 +110,17 @@ public class SpringTest {
     }
 
 
+    @Test
+    public void test6() {
+
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
+
+
+        applicationContext.getBeanFactory().destroySingletons();
+
+
+    }
+
+
 
 }
