@@ -18,6 +18,9 @@
 
     </context:component-scan>
 
+    <context:property-placeholder location="classpath:property.properties,classpath:application.properties" />
+
+
 <!--    <import resource="spring.xml"/>-->
     <bean id="student" class="com.ljw.spring.source.s1.beans.Student"/>
 
@@ -27,5 +30,9 @@
     <!-- factory-method这种形式，要求必须存在class或者factory-bean的配置 -->
     <bean id="factoryMethodLjw2" class="com.ljw.spring.source.s1.factorymethod.vo.FactoryMethodLjw2" factory-method="getFactoryMethodLjwBean"></bean>
 
+    <bean id="propertiesBean" class="com.ljw.spring.source.s1.beans.PropertiesBean" >
+        <property name="name" value="${properties.name}"></property>
+        <property name="password" value="${properties.password}"></property>
+    </bean>
 
 </beans>

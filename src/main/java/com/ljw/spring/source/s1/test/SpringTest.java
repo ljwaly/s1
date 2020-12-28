@@ -1,5 +1,6 @@
 package com.ljw.spring.source.s1.test;
 
+import com.ljw.spring.source.s1.beans.PropertiesBean;
 import com.ljw.spring.source.s1.beans.Star2;
 import com.ljw.spring.source.s1.constructor.AutowiredConstructorBean;
 import com.ljw.spring.source.s1.factorymethod.vo.FactoryMethodLjw;
@@ -110,12 +111,20 @@ public class SpringTest {
     }
 
 
+    /**
+     * 实现删除方法
+     */
     @Test
     public void test6() {
 
         ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
 
+        PropertiesBean propertiesBean = applicationContext.getBean(PropertiesBean.class);
+        System.out.println("-----propertiesBean = " + propertiesBean);
 
+        /**
+         * 拿到容器对象，进行destroy的方法调用
+         */
         applicationContext.getBeanFactory().destroySingletons();
 
 

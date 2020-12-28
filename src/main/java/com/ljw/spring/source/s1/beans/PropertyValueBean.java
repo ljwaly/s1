@@ -10,14 +10,20 @@ import javax.annotation.Resource;
 @Component
 public class PropertyValueBean {
 
+
+    private String password;
+
     @Value("${property.aba}")
     private String aba;
 
+
+
+
     @Resource
-    private Star1 s1;
+    private TestBean1 t1;
 
     @Autowired
-    private Star2 s2;
+    private TestBean2 t2;
 
     public PropertyValueBean (){
         System.out.println("----PropertyValueBean");
@@ -35,5 +41,13 @@ public class PropertyValueBean {
 
     public void setAba(String aba) {
         this.aba = aba;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
