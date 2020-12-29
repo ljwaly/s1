@@ -13,11 +13,10 @@
 	http://www.springframework.org/schema/aop/spring-aop-3.2.xsd"
     default-lazy-init="false">
 
+    <!-- 扫描注解 -->
+    <context:component-scan base-package="com.ljw.spring.source.s1" />
 
-    <context:component-scan base-package="com.ljw.spring.source.s1">
-
-    </context:component-scan>
-
+    <!-- 加载系统的配置文件的配置参数 -->
     <context:property-placeholder location="classpath:property.properties,classpath:application.properties" />
 
 

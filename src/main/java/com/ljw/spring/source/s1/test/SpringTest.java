@@ -13,6 +13,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.ljw.spring.source.s1.beans.Student;
+import org.springframework.core.env.Environment;
 
 public class SpringTest {
 
@@ -126,6 +127,23 @@ public class SpringTest {
          * 拿到容器对象，进行destroy的方法调用
          */
         applicationContext.getBeanFactory().destroySingletons();
+
+
+    }
+
+
+    /**
+     * Environment的结构
+     */
+    @Test
+    public void test7() {
+
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
+
+        Environment bean = applicationContext.getBean(Environment.class);
+
+        System.out.println("bean = " + bean);
+
 
 
     }
