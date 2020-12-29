@@ -1,5 +1,6 @@
 package com.ljw.spring.source.s1.test;
 
+import com.ljw.spring.source.s1.beans.FactoryBeanDemo;
 import com.ljw.spring.source.s1.beans.PropertiesBean;
 import com.ljw.spring.source.s1.beans.Star2;
 import com.ljw.spring.source.s1.constructor.AutowiredConstructorBean;
@@ -145,6 +146,24 @@ public class SpringTest {
         System.out.println("bean = " + bean);
 
 
+
+    }
+
+    /**
+     * FactoryBead的验证
+     */
+    @Test
+    public void test8() {
+
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
+
+        Student bean = (Student) applicationContext.getBean("factoryBeanDemo");
+
+        System.out.println("bean = " + bean.getName());
+
+        FactoryBeanDemo bean1 = (FactoryBeanDemo) applicationContext.getBean("&factoryBeanDemo");
+
+        System.out.println("bean = " + bean1);
 
     }
 

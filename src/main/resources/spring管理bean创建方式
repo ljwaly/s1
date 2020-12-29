@@ -1,0 +1,5 @@
+1.手动创建new一个对象，用beanFactory放入
+    beanFactory.registerSingleton(bean)
+2.自定义个BeanDefinition
+3.自定义factoryBean
+4.@Bean
