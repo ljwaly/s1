@@ -16,7 +16,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.ljw.spring.source.s1.beans.Student;
 import org.springframework.core.env.Environment;
 
-public class SpringTest {
+public class SpringXmlTest {
 
     public static void main(String[] args) {
         String s2 =  new String("张") + new String("三");
