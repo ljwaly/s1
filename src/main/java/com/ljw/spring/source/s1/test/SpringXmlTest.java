@@ -9,6 +9,7 @@ import com.ljw.spring.source.s1.factorymethod.vo.FactoryMethodLjw2;
 import com.ljw.spring.source.s1.listener.LjwApplicationListener;
 import com.ljw.spring.source.s1.listener.event.LjwEvent;
 import com.ljw.spring.source.s1.listener.event.LjwEvent1;
+import com.ljw.spring.source.s1.scope.CustomScopeBean;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -167,6 +168,36 @@ public class SpringXmlTest {
 
     }
 
+
+    /**
+     * FactoryBead的验证
+     */
+    @Test
+    public void test9() {
+
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
+
+        Student bean = applicationContext.getBean(Student.class);
+
+        System.out.println("bean = " + bean.getName());
+
+
+    }
+
+    /**
+     * 自定义Scope的验证
+     */
+    @Test
+    public void test10() {
+
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
+
+        CustomScopeBean bean = applicationContext.getBean(CustomScopeBean.class);
+
+        System.out.println("bean = " + bean.getUsername());
+
+
+    }
 
 
 }
