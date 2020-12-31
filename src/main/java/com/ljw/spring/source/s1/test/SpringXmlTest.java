@@ -1,6 +1,6 @@
 package com.ljw.spring.source.s1.test;
 
-import com.ljw.spring.source.s1.beans.FactoryBeanDemo;
+import com.ljw.spring.source.s1.beandefinitionpostprocessor.FactoryBeanDemo;
 import com.ljw.spring.source.s1.beans.PropertiesBean;
 import com.ljw.spring.source.s1.beans.Star2;
 import com.ljw.spring.source.s1.constructor.AutowiredConstructorBean;

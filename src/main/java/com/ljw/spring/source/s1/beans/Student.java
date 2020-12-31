@@ -1,8 +1,7 @@
 package com.ljw.spring.source.s1.beans;
 
 /**
- * @Auth lijinwu
- * @Date 2020年12月9日 下午4:18:01
+ * 使用FactoryBean模式创建对象
  */
 public class Student {
 
