@@ -3,6 +3,7 @@ package com.ljw.spring.source.s1.test;
 import com.ljw.spring.source.s1.beans.*;
 import com.ljw.spring.source.s1.beans.scanbean.ScanBean;
 import com.ljw.spring.source.s1.beans.scanbean.imports.ImportLjwWithNothing;
+import com.ljw.spring.source.s1.beans.scanbean.metadata.AnnotationMetadataDemo;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -78,6 +79,17 @@ public class AnnotationTest {
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ScanBean.class);
         ImportLjwWithNothing annotationBeanBean =  applicationContext.getBean(ImportLjwWithNothing.class);
         System.out.println("annotationBeanBean=" + annotationBeanBean);
+    }
+
+
+    /**
+     * 获取AnnotationMetadata测试
+     */
+    @Test
+    public void test7() {
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ScanBean.class);
+        AnnotationMetadataDemo bean =  applicationContext.getBean(AnnotationMetadataDemo.class);
+        bean.metaData();
     }
 
 

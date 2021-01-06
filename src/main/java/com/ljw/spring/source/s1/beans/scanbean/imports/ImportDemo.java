@@ -24,11 +24,17 @@ public class ImportDemo implements ImportSelector {
 
         if (ma != null){
             Optional<Object> proxyTargetClass = ma.getValue("proxyTargetClass");
+//            Object proxyTargetClassValue = proxyTargetClass.get();
+            /**
+             * EnableAspectJAutoProxy注解是在扫描类的上面的
+             *
+             * 这里可以拿到EnableAspectJAutoProxy注解的proxyTargetClass的值
+             */
         }
 
 
         /**
-         * 返回需要实例化的全类名
+         * 返回类的完整限定名
          */
         return new String[]{ ImportLjwBean.class.getName() };
     }
