@@ -1,17 +1,43 @@
 package com.ljw.spring.source.s1.beans.scanbean.imports;
 
+import com.ljw.spring.source.s1.beans.scanbean.imports.vo.HN;
+import com.ljw.spring.source.s1.beans.scanbean.imports.vo.JS;
+import com.ljw.spring.source.s1.beans.scanbean.imports.vo.LN;
+import com.ljw.spring.source.s1.beans.scanbean.imports.vo.SH;
 import org.springframework.context.annotation.DeferredImportSelector;
 import org.springframework.core.type.AnnotationMetadata;
 
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * 模拟springboot调用原理
+ *
+ */
 public class ImportDeferredImportSelectorDemo implements DeferredImportSelector {
+
+    /**
+     * 被内部类的group进行回调
+     *
+     * @param importingClassMetadata
+     * @return
+     */
     @Override
     public String[] selectImports(AnnotationMetadata importingClassMetadata) {
+
+        //第四个被调用
         System.out.println("----------ImportDeferredImportSelectorDemo.selectImports");
 
-        return new String[0];
+        /**
+         * 返回需要实例化的类的全类名列表
+         */
+        return new String[]{
+                HN.class.getName(),
+                LN.class.getName(),
+                JS.class.getName(),
+                SH.class.getName()
+        };
     }
 
     /**
@@ -23,6 +49,8 @@ public class ImportDeferredImportSelectorDemo implements DeferredImportSelector 
      */
     @Override
     public Class<? extends Group> getImportGroup() {
+
+        //第一个被调用
         System.out.println("----------ImportDeferredImportSelectorDemo.getImportGroup");
         return ImportDeferredImportSelectorGroupDemo.class;
     }
@@ -36,12 +64,25 @@ public class ImportDeferredImportSelectorDemo implements DeferredImportSelector 
 
         @Override
         public void process(AnnotationMetadata metadata, DeferredImportSelector selector) {
+
+            //第二个被调用
             System.out.println("----------ImportDeferredImportSelectorGroupDemo.process");
+
+            /**
+             * 搜集需要实例化的类
+             * 调用这个外部类的接口selectImports()实现方法
+             */
+            String[] strings = selector.selectImports(metadata);
+            for (String string: strings) {
+                list.add(new Entry(metadata, string));
+            }
 
         }
 
         @Override
         public Iterable<Entry> selectImports() {
+
+            //第三个被调用
             System.out.println("----------ImportDeferredImportSelectorGroupDemo.selectImports");
             return list;
         }

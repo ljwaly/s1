@@ -3,6 +3,8 @@ package com.ljw.spring.source.s1.test;
 import com.ljw.spring.source.s1.beans.*;
 import com.ljw.spring.source.s1.beans.scanbean.ScanBean;
 import com.ljw.spring.source.s1.beans.scanbean.imports.ImportLjwWithNothing;
+import com.ljw.spring.source.s1.beans.scanbean.imports.vo.HN;
+import com.ljw.spring.source.s1.beans.scanbean.imports.vo.SH;
 import com.ljw.spring.source.s1.beans.scanbean.metadata.AnnotationMetadataDemo;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -94,6 +96,19 @@ public class AnnotationTest {
 
 
 
+    /**
+     * 模拟springboot的@Import注入类实现接口DeferredImportSelector方式，
+     * 向spring容器添加实例
+     */
+    @Test
+    public void test8() {
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ScanBean.class);
+        SH sh =  applicationContext.getBean(SH.class);
+        System.out.println(sh);
+
+        HN hn =  applicationContext.getBean(HN.class);
+        System.out.println(hn);
+    }
 
 
 
