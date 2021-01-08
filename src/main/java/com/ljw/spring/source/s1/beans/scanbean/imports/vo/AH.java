@@ -1,7 +1,10 @@
 package com.ljw.spring.source.s1.beans.scanbean.imports.vo;
 
-public class LN {
-    private String flag = "liaoning";
+import org.springframework.stereotype.Component;
+
+@Component
+public class AH {
+    private String flag = "anhui";
 
     public String getFlag() {
         return this.flag;

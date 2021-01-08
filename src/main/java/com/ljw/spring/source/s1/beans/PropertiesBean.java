@@ -5,7 +5,7 @@ public class PropertiesBean {
 
     private String password;
 
-    private String name;
+    private String str;
 
     public String getPassword() {
         return password;
@@ -15,19 +15,19 @@ public class PropertiesBean {
         this.password = password;
     }
 
-    public String getName() {
-        return name;
+    public String getStr() {
+        return str;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setStr(String str) {
+        this.str = str;
     }
 
     @Override
     public String toString() {
         return "PropertiesBean{" +
                 "password='" + password + '\'' +
-                ", name='" + name + '\'' +
+                ", str='" + str + '\'' +
                 '}';
     }
 }

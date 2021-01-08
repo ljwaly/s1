@@ -2,14 +2,16 @@ package com.ljw.spring.source.s1.test;
 
 import com.ljw.spring.source.s1.beans.*;
 import com.ljw.spring.source.s1.beans.scanbean.ScanBean;
+import com.ljw.spring.source.s1.beans.scanbean.jconditional.DemoConditionBean;
 import com.ljw.spring.source.s1.beans.scanbean.imports.ImportLjwWithNothing;
+import com.ljw.spring.source.s1.beans.scanbean.imports.vo.AH;
 import com.ljw.spring.source.s1.beans.scanbean.imports.vo.HN;
 import com.ljw.spring.source.s1.beans.scanbean.imports.vo.SH;
+import com.ljw.spring.source.s1.beans.scanbean.jconditional.DemoConditionProperty;
 import com.ljw.spring.source.s1.beans.scanbean.metadata.AnnotationMetadataDemo;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 
 /**
@@ -108,6 +110,40 @@ public class AnnotationTest {
 
         HN hn =  applicationContext.getBean(HN.class);
         System.out.println(hn);
+    }
+
+    /**
+     * 模拟@Conditon
+     */
+    @Test
+    public void test9() {
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ScanBean.class);
+
+        String[] beanDefinitionNames = applicationContext.getBeanDefinitionNames();
+
+        AH ah =  applicationContext.getBean(AH.class);
+        System.out.println(ah);
+
+        DemoConditionBean sh = applicationContext.getBean(DemoConditionBean.class);
+        System.out.println(sh);
+
+
+
+    }
+
+    /**
+     * 模拟@ConditionOnProperty自定义条件注入bean
+     */
+    @Test
+    public void test10() {
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ScanBean.class);
+
+
+        DemoConditionProperty sh = applicationContext.getBean(DemoConditionProperty.class);
+        System.out.println(sh);
+
+
+
     }
 
 

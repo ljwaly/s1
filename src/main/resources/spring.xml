@@ -30,7 +30,7 @@
     <bean id="factoryMethodLjw2" class="com.ljw.spring.source.s1.factorymethod.vo.FactoryMethodLjw2" factory-method="getFactoryMethodLjwBean"></bean>
 
     <bean id="propertiesBean" class="com.ljw.spring.source.s1.beans.PropertiesBean" >
-        <property name="name" value="${properties.name}"></property>
+        <property name="str" value="${properties.name}"></property>
         <property name="password" value="${properties.password}"></property>
     </bean>
 
