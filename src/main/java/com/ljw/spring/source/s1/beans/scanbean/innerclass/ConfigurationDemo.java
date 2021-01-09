@@ -11,7 +11,9 @@ import org.springframework.context.annotation.Configuration;
  * 注解@Component（调用2次，违背单例）和@Configuration（调用一次，有代理对象生成）有区别
  *
  * 注解@Configuration需要每次方法调用，需要从缓存中获取到Bena
- *
+ * 注解@Configuration在spring容器中，创建出来的对象ConfigurationDemo是动态代理类对象，
+ *     在调用此代理对象方法的时候，会调用filter的accept方法并转向代理方法（进行前后置处理）
+ * 注解@Component在spring容器中，创建粗来的对象就是ConfigurationDemo自己类的对象
  */
 @Configuration
 public class ConfigurationDemo {
