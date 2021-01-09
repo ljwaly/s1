@@ -1,6 +1,7 @@
 package com.ljw.spring.source.s1.beans.scanbean.imports;
 
 
+import com.ljw.spring.source.s1.beans.scanbean.imports.vo.ImportLjwBean;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.ImportSelector;
 import org.springframework.core.annotation.MergedAnnotation;
@@ -9,7 +10,11 @@ import org.springframework.core.type.AnnotationMetadata;
 
 import java.util.Optional;
 
-public class ImportDemo implements ImportSelector {
+
+/**
+ * 实现了ImportSelector的类ImportSelectorDemo，本身并不会实例化
+ */
+public class ImportSelectorDemo implements ImportSelector {
 
 
     /**

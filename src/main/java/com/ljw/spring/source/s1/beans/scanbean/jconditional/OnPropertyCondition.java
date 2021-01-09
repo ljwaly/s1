@@ -10,6 +10,16 @@ import org.springframework.core.type.AnnotatedTypeMetadata;
 import java.util.Optional;
 
 public class OnPropertyCondition implements Condition {
+
+    /**
+     * 根据规则匹配成功，
+     * 则返回true,才会注入自定义condition注解的类
+     * 不符合规则的，返回false
+     *
+     * @param context
+     * @param metadata
+     * @return
+     */
     @Override
     public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
 

@@ -2,8 +2,10 @@ package com.ljw.spring.source.s1.test;
 
 import com.ljw.spring.source.s1.beans.*;
 import com.ljw.spring.source.s1.beans.scanbean.ScanBean;
+import com.ljw.spring.source.s1.beans.scanbean.imports.ImportBeanDefinitionRegistrarDemo;
+import com.ljw.spring.source.s1.beans.scanbean.imports.ImportWithNothing;
+import com.ljw.spring.source.s1.beans.scanbean.imports.vo.Docker;
 import com.ljw.spring.source.s1.beans.scanbean.jconditional.DemoConditionBean;
-import com.ljw.spring.source.s1.beans.scanbean.imports.ImportLjwWithNothing;
 import com.ljw.spring.source.s1.beans.scanbean.imports.vo.AH;
 import com.ljw.spring.source.s1.beans.scanbean.imports.vo.HN;
 import com.ljw.spring.source.s1.beans.scanbean.imports.vo.SH;
@@ -81,8 +83,8 @@ public class AnnotationTest {
     @Test
     public void test6() {
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ScanBean.class);
-        ImportLjwWithNothing annotationBeanBean =  applicationContext.getBean(ImportLjwWithNothing.class);
-        System.out.println("annotationBeanBean=" + annotationBeanBean);
+        ImportWithNothing bean =  applicationContext.getBean(ImportWithNothing.class);
+        System.out.println("bean=" + bean);
     }
 
 
@@ -111,6 +113,16 @@ public class AnnotationTest {
         HN hn =  applicationContext.getBean(HN.class);
         System.out.println(hn);
     }
+    /**
+     * 注解@Import注入类，实现特殊接口（例如：DeferredImportSelector）方式，
+     * 类本身并不会被加入到spring容器
+     */
+    @Test
+    public void test8_1() {
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ScanBean.class);
+        ImportBeanDefinitionRegistrarDemo sh =  applicationContext.getBean(ImportBeanDefinitionRegistrarDemo.class);
+        System.out.println(sh);
+    }
 
     /**
      * 模拟@Conditon
@@ -137,16 +149,22 @@ public class AnnotationTest {
     @Test
     public void test10() {
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ScanBean.class);
-
-
         DemoConditionProperty sh = applicationContext.getBean(DemoConditionProperty.class);
         System.out.println(sh);
-
-
 
     }
 
 
+    /**
+     * 模拟@Configuration注解和@Component注解差别
+     */
+    @Test
+    public void test11() {
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ScanBean.class);
+        Docker bean = applicationContext.getBean(Docker.class);
+        System.out.println(bean.hashCode());
+
+    }
 
 
 

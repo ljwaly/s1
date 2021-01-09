@@ -14,6 +14,7 @@ import java.util.List;
 /**
  * 模拟springboot调用原理
  *
+ * 实现了DeferredImportSelector接口的类ImportSelectorDemo，本身并不会实例化
  */
 public class ImportDeferredImportSelectorDemo implements DeferredImportSelector {
 

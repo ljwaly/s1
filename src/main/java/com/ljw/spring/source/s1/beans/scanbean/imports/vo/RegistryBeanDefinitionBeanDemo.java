@@ -1,4 +1,4 @@
-package com.ljw.spring.source.s1.beans;
+package com.ljw.spring.source.s1.beans.scanbean.imports.vo;
 
 /**
  * 使用BeanDefinition创建对象
