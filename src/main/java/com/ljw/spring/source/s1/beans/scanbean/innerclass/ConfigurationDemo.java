@@ -59,7 +59,20 @@ public class ConfigurationDemo {
         lisonFactory.setLison(getLison());
 
 
+        /**
+         * spring管理的lili对象，在@Configuration的回调方法中，getBean过程中放到spring容器了
+         * 放进spring容器之后，返回的bean，由这个bean创建了一个增强代理Lili对象，对getObject有切点的对象
+         * 这个对象并不会放入spring容器中，返回到这里
+         *
+         */
         Lili lili = getLili();
+
+        /**
+         * 在@Bean方法内部的方法调用，都会触发创建增强代理类，形成切点方法
+         * 而在其他环境中，不能触发切点方法（从spring中拿出来的Lili是一个普通类）
+         * 在这里，lili是一个增强代理对象，这个并不是spring容器管理的
+         *
+         */
         Object object = lili.getObject();
         System.out.println("object.hashCode() = " + object.hashCode());
 
@@ -69,8 +82,17 @@ public class ConfigurationDemo {
 
     @Bean
     public Lili getLili(){
-
-        return  new Lili();
+        /**
+         * 在创建这个对象的时候，
+         * 因为是@Bean注解
+         * 会在@Configuration的代理增强类的回调方法中，创建Lili的对象，
+         * 而Lili本身是FactoryBean，会创建Lili的增强代理类，
+         * 然后在Lili的代理类内部设定回调方法，
+         * 当getLili()方法被调用的时候，激活getObject方法
+         *
+         *
+         */
+        return new Lili();
     }
 
 

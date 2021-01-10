@@ -4,11 +4,8 @@ import com.ljw.spring.source.s1.beans.*;
 import com.ljw.spring.source.s1.beans.scanbean.ScanBean;
 import com.ljw.spring.source.s1.beans.scanbean.imports.ImportBeanDefinitionRegistrarDemo;
 import com.ljw.spring.source.s1.beans.scanbean.imports.ImportWithNothing;
-import com.ljw.spring.source.s1.beans.scanbean.imports.vo.Docker;
+import com.ljw.spring.source.s1.beans.scanbean.imports.vo.*;
 import com.ljw.spring.source.s1.beans.scanbean.jconditional.DemoConditionBean;
-import com.ljw.spring.source.s1.beans.scanbean.imports.vo.AH;
-import com.ljw.spring.source.s1.beans.scanbean.imports.vo.HN;
-import com.ljw.spring.source.s1.beans.scanbean.imports.vo.SH;
 import com.ljw.spring.source.s1.beans.scanbean.jconditional.DemoConditionProperty;
 import com.ljw.spring.source.s1.beans.scanbean.metadata.AnnotationMetadataDemo;
 import org.junit.Test;
@@ -157,12 +154,30 @@ public class AnnotationTest {
 
     /**
      * 模拟@Configuration注解和@Component注解差别
+     *
+     * getObject方法只有在@Bean注解中，才能使用切点方法
      */
     @Test
-    public void test11() {
+    public void test11() throws Exception {
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ScanBean.class);
-        Docker bean = applicationContext.getBean(Docker.class);
-        System.out.println(bean.hashCode());
+        Docker docker1 = applicationContext.getBean(Docker.class);
+        System.out.println("docker1.hashCode()= " + docker1.hashCode());
+
+
+        /**
+         * lili是spring容器中的lili，
+         * 普通对象，
+         * 并不是@Configuration的@Bean方法中的增强代理类
+         *
+         */
+        Lili lili = applicationContext.getBean(Lili.class);
+        /**
+         * 但是这里并没有调用切点方法，直接调用了Lili类内部的getObject,得到了一个新的docker
+         * 所以这里是普通类，直接调用getObject()方法
+         */
+        Object object = lili.getObject();
+        System.out.println("object.hashCode() = " + object.hashCode());
+
 
     }
 
