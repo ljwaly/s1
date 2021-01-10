@@ -181,6 +181,17 @@ public class AnnotationTest {
 
     }
 
+    /**
+     * 模拟
+     */
+    @Test
+    public void test12() {
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ScanBean.class);
+        DemoConditionProperty sh = applicationContext.getBean(DemoConditionProperty.class);
+        System.out.println(sh);
+
+    }
+
 
 
 

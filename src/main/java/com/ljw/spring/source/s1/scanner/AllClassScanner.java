@@ -12,6 +12,11 @@ import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * 必须使用@Import导入才有效，使用@Component无法实现导入扫描的类
+ * 方法需要类在@Import导入之后，才能被调用
+ */
 public class AllClassScanner implements ImportBeanDefinitionRegistrar {
 
     @Override
