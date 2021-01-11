@@ -1,5 +1,6 @@
 package com.ljw.spring.source.s1.test;
 
+import com.ljw.s2.bean.Li;
 import com.ljw.spring.source.s1.beans.*;
 import com.ljw.spring.source.s1.beans.scanbean.ScanBean;
 import com.ljw.spring.source.s1.beans.scanbean.imports.ImportBeanDefinitionRegistrarDemo;
@@ -8,6 +9,7 @@ import com.ljw.spring.source.s1.beans.scanbean.imports.vo.*;
 import com.ljw.spring.source.s1.beans.scanbean.jconditional.DemoConditionBean;
 import com.ljw.spring.source.s1.beans.scanbean.jconditional.DemoConditionProperty;
 import com.ljw.spring.source.s1.beans.scanbean.metadata.AnnotationMetadataDemo;
+import com.ljw.spring.source.s1.scanner.selector.SelfDefineImportSelectorScannerTest;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -189,6 +191,33 @@ public class AnnotationTest {
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ScanBean.class);
         DemoConditionProperty sh = applicationContext.getBean(DemoConditionProperty.class);
         System.out.println(sh);
+
+    }
+
+
+    /**
+     * 创建自定义扫描注解
+     * 全量扫描
+     */
+    @Test
+    public void test13() {
+
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ScanBean.class);
+        Li bean = applicationContext.getBean(Li.class);
+        System.out.println("bean = " + bean);
+
+    }
+
+    /**
+     * 创建自定义扫描注解
+     * 全量扫描
+     */
+    @Test
+    public void test14() {
+
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(SelfDefineImportSelectorScannerTest.class);
+        Li bean = applicationContext.getBean(Li.class);
+        System.out.println("bean = " + bean);
 
     }
 

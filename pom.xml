@@ -61,6 +61,13 @@
         </dependency>
 
 
+        <dependency>
+            <groupId>com.ljw</groupId>
+            <artifactId>s2-bean</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>

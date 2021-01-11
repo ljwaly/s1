@@ -1,7 +1,7 @@
 package com.ljw.spring.source.s1.annotation;
 
 
-import com.ljw.spring.source.s1.scanner.AllClassScannerImportBeanDefinitionRegistrar;
+import com.ljw.spring.source.s1.scanner.selector.SelfDefineImportSelectorScanner;
 import org.springframework.context.annotation.Import;
 
 import java.lang.annotation.*;
@@ -9,8 +9,8 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 @Documented
-@Import(AllClassScannerImportBeanDefinitionRegistrar.class)
-public @interface BeansScanner {
+@Import(SelfDefineImportSelectorScanner.class)
+public @interface ImportSelectorBeansScanner {
 
     String[] value() default {};
 

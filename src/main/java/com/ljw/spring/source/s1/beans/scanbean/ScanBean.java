@@ -1,6 +1,7 @@
 package com.ljw.spring.source.s1.beans.scanbean;
 
 
+import com.ljw.spring.source.s1.annotation.BeansScanner;
 import com.ljw.spring.source.s1.beans.scanbean.imports.ImportDeferredImportSelectorDemo;
 import com.ljw.spring.source.s1.beans.scanbean.imports.ImportSelectorDemo;
 import com.ljw.spring.source.s1.beans.scanbean.imports.ImportBeanDefinitionRegistrarDemo;

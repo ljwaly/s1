@@ -55,17 +55,7 @@ public class SpringXmlTest {
 
 
 
-    /**
-     * 注解式启动ApplicationContext
-     */
-    @Test
-    public void test2() {
 
-        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(TestBean.class);
-        Star2 bean = applicationContext.getBean(Star2.class);
-        System.out.println(bean.getName());
-
-    }
 
     /**
      * xml式启动ApplicationContext

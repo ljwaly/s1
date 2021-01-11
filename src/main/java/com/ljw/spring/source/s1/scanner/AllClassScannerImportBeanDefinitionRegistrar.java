@@ -17,7 +17,7 @@ import java.util.List;
  * 必须使用@Import导入才有效，使用@Component无法实现导入扫描的类
  * 方法需要类在@Import导入之后，才能被调用
  */
-public class AllClassScanner implements ImportBeanDefinitionRegistrar {
+public class AllClassScannerImportBeanDefinitionRegistrar implements ImportBeanDefinitionRegistrar {
 
     @Override
     public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
@@ -29,7 +29,7 @@ public class AllClassScanner implements ImportBeanDefinitionRegistrar {
         BeanPackageScanner scanner = new BeanPackageScanner(registry);
 
 
-        //扫描特定的annotationClass的注解,如果设置了定义的注解，则只过滤这个注解
+        //扫描特定的annotationClass的注解,如果设置了定义的注解，则只过滤这个注解，目前没有做实现
         Class<? extends Annotation> annotationClass = annoAttrs.getClass("annotationClass");
         if (!Annotation.class.equals(annotationClass)){
             acceptAllBeans = false;
