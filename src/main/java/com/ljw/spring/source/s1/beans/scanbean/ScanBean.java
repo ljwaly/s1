@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @ComponentScan("com.ljw.spring.source.s1")
 @Import({ImportSelectorDemo.class, ImportBeanDefinitionRegistrarDemo.class, ImportWithNothing.class, ImportDeferredImportSelectorDemo.class})
 @PropertySource({"classpath:ljwcondition.properties"})
-//@EnableAspectJAutoProxy
+@EnableAspectJAutoProxy
 //@ImportResource("classpath:spring.xml")//基本上用不到，现在基本上都是基于注解
 public class ScanBean {
 }
