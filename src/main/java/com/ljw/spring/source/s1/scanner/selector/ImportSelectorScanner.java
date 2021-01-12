@@ -1,7 +1,6 @@
 package com.ljw.spring.source.s1.scanner.selector;
 
 import com.ljw.spring.source.s1.annotation.ImportSelectorBeansScanner;
-import com.ljw.spring.source.s1.scanner.BeanPackageScanner;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;

@@ -10,6 +10,7 @@ import com.ljw.spring.source.s1.beans.scanbean.jconditional.DemoConditionBean;
 import com.ljw.spring.source.s1.beans.scanbean.jconditional.DemoConditionProperty;
 import com.ljw.spring.source.s1.beans.scanbean.metadata.AnnotationMetadataDemo;
 import com.ljw.spring.source.s1.scanner.selector.SelfDefineImportSelectorScannerTest;
+import com.ljw.spring.source.s1.service.TeacherService;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -196,7 +197,7 @@ public class AnnotationTest {
 
 
     /**
-     * 创建自定义扫描注解
+     * 创建自定义扫描注解ImportBeanDefinitionRegistrar
      * 全量扫描
      */
     @Test
@@ -209,7 +210,7 @@ public class AnnotationTest {
     }
 
     /**
-     * 创建自定义扫描注解
+     * 创建自定义扫描注解 + ImportSelector + BeanDefinitionRegistryPostProcessor
      * 全量扫描
      */
     @Test
@@ -220,6 +221,21 @@ public class AnnotationTest {
         System.out.println("bean = " + bean);
 
     }
+
+    /**
+     * 创建自定义依赖DI注入注解ImportBeanDefinitionRegistrar
+     * 全量扫描
+     */
+    @Test
+    public void test15() {
+
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ScanBean.class);
+        TeacherService teacherService = applicationContext.getBean(TeacherService.class);
+        teacherService.doTeacherService();
+
+    }
+
+
 
 
 
