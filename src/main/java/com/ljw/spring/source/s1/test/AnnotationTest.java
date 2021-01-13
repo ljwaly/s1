@@ -223,7 +223,7 @@ public class AnnotationTest {
     }
 
     /**
-     * 创建自定义依赖DI注入注解ImportBeanDefinitionRegistrar
+     * 创建自定义依赖DI注入注解未完成
      * 全量扫描
      */
     @Test
@@ -235,6 +235,17 @@ public class AnnotationTest {
 
     }
 
+    /**
+     * Aop
+     */
+    @Test
+    public void test16() {
+
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ScanBean.class);
+        TeacherService teacherService = applicationContext.getBean(TeacherService.class);
+        teacherService.doTeacherService();
+
+    }
 
 
 

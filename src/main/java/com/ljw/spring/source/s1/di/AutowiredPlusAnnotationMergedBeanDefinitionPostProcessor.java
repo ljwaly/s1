@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.InjectionMetadata;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.config.DependencyDescriptor;
+import org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessorAdapter;
 import org.springframework.beans.factory.support.MergedBeanDefinitionPostProcessor;
 import org.springframework.beans.factory.support.RootBeanDefinition;
 import org.springframework.core.Ordered;
@@ -37,7 +38,8 @@ import java.util.concurrent.ConcurrentHashMap;
 
 
 //@Component
-public class AutowiredPlusAnnotationMergedBeanDefinitionPostProcessor implements MergedBeanDefinitionPostProcessor, PriorityOrdered,  BeanFactoryAware {
+public class AutowiredPlusAnnotationMergedBeanDefinitionPostProcessor extends InstantiationAwareBeanPostProcessorAdapter
+        implements MergedBeanDefinitionPostProcessor, PriorityOrdered,  BeanFactoryAware {
 
     protected final Log logger = LogFactory.getLog(getClass());
 
@@ -58,10 +60,14 @@ public class AutowiredPlusAnnotationMergedBeanDefinitionPostProcessor implements
 
     private final Map<String, InjectionMetadata> injectionMetadataCache = new ConcurrentHashMap<>(256);
 
-
+    /**
+     * 实现这个接口MergedBeanDefinitionPostProcessor,
+     * 完成对 构造方法的注解的扫描搜集
+     *
+     */
     @Override
     public void postProcessMergedBeanDefinition(RootBeanDefinition beanDefinition, Class<?> beanType, String beanName) {
-//        AutowiredAnnotationBeanPostProcessor
+
         System.out.println("--new DI ----AutowiredPlusAnnotationMergedBeanDefinitionPostProcessor");
         /**
          * 核心代码
@@ -70,6 +76,41 @@ public class AutowiredPlusAnnotationMergedBeanDefinitionPostProcessor implements
         metadata.checkConfigMembers(beanDefinition);
     }
 
+    /**
+     * 继承这个类InstantiationAwareBeanPostProcessorAdapter
+     * 完成对@Autowired的依赖注入
+     *
+     */
+    @Override
+    public PropertyValues postProcessProperties(PropertyValues pvs, Object bean, String beanName) {
+
+        /**
+         * 此时，需要注入，获取注解对象
+         * 还是这个方法，和收集注解的对象的过程一样
+         * 在这个时候，就是直接从缓存中拿了
+         */
+        InjectionMetadata metadata = findAutowiringPlusMetadata(beanName, bean.getClass(), pvs);
+
+
+        try {
+
+            /**
+             * DI-核心代码-3
+             * 依赖注入
+             *
+             * TODO:这里要写AutowiredPlus的inject方法
+             */
+            metadata.inject(bean, beanName, pvs);
+
+        }
+        catch (BeanCreationException ex) {
+            throw ex;
+        }
+        catch (Throwable ex) {
+            throw new BeanCreationException(beanName, "Injection of autowired dependencies failed", ex);
+        }
+        return pvs;
+    }
 
     public AutowiredPlusAnnotationMergedBeanDefinitionPostProcessor() {
 
@@ -150,35 +191,7 @@ public class AutowiredPlusAnnotationMergedBeanDefinitionPostProcessor implements
     }
 
 
-    public PropertyValues postProcessProperties(PropertyValues pvs, Object bean, String beanName) {
 
-        /**
-         * 此时，需要注入，获取注解对象
-         * 还是这个方法，和收集注解的对象的过程一样
-         * 在这个时候，就是直接从缓存中拿了
-         */
-        InjectionMetadata metadata = findAutowiringPlusMetadata(beanName, bean.getClass(), pvs);
-
-
-        try {
-
-            /**
-             * DI-核心代码-3
-             * 依赖注入
-             *
-             * TODO:这里要写AutowiredPlus的inject方法
-             */
-            metadata.inject(bean, beanName, pvs);
-
-        }
-        catch (BeanCreationException ex) {
-            throw ex;
-        }
-        catch (Throwable ex) {
-            throw new BeanCreationException(beanName, "Injection of autowired dependencies failed", ex);
-        }
-        return pvs;
-    }
 
     private InjectionMetadata findAutowiringPlusMetadata(String beanName, Class<?> clazz, @Nullable PropertyValues pvs) {
         // Fall back to class name as cache key, for backwards compatibility with custom callers.
@@ -369,7 +382,8 @@ public class AutowiredPlusAnnotationMergedBeanDefinitionPostProcessor implements
 
 
         /**
-         * 这里重写
+         * TODO:这里重写（未完成）
+         *
          *
          * @param bean
          * @param beanName
@@ -378,6 +392,8 @@ public class AutowiredPlusAnnotationMergedBeanDefinitionPostProcessor implements
          */
         @Override
         protected void inject(Object bean, @Nullable String beanName, @Nullable PropertyValues pvs) throws Throwable {
+
+
 
             /**
              * DI-核心代码-5

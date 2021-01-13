@@ -11,8 +11,9 @@ import org.springframework.stereotype.Component;
 public class Logging {
 
 
-//    @Pointcut("within(com.ljw.spring.source.s1.service..*) ")
-    @Pointcut("execution()")
+
+//    @Pointcut("execution()")
+    @Pointcut("within(com.ljw.spring.source.s1.service..*) ")
     public void remoteCallPointcut() {
     }
 

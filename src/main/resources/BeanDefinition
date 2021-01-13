@@ -1,0 +1,36 @@
+RootBeanDefinition
+    是汇总的，相当于其他的最终在BeanDefinition进行实例化的时候，
+    大的for循环beanNames，都统一重新封装成root处理
+GenericBeanDefinition
+    主要就是这个，我们自定义使用，其他都是spring内部使用
+ScannedGenericBeanDefinition
+    通过xml自定义标签:component-scan扫描到的和@Component扫描的
+    new ScannedGenericBeanDefinition(metadataReader)
+    构造函数需要一个MetadataReader
+AnnotatedGenericBeanDefinition
+    @Import进来的内部类
+    位置：ConfigurationClassBeanDefinitionPostProcessor的loadBeanDefinition(configClass)
+    new AnnotatedGenericBeanDefinition(metadata);
+    构造函数需要一个AnnotationMetadata
+ConfigurationClassBeanDefinition
+    不允许个人使用，个人用不到
+    @Bean解析的时候
+    是一个内部私有静态类
+
+
+
+得到各种metadata方法：
+1.实现ResourceLoaderAware接口
+    得到ResourceLoader resourceLoader
+
+2.通过ResourceLoader创建CachingMetadataReaderFactory工厂类
+    CachingMetadataReaderFactory cachingMetadataReaderFactory = new CachingMetadataReaderFactory(resourceLoader);
+
+3.通过CachingMetadataReaderFactory拿到一个类的各种metadata
+    MetadataReader metadataReader = cachingMetadataReaderFactory.getMetadataReader(类名.class.getName());
+    通过metadataReader可以创建ScannedGenericBeanDefinition对象
+
+4.通过metadataReader拿到AnnotationMetadata
+    AnnotationMetadata annotationMetadata = metadataReader.getAnnotationMetadata();
+    通过annotationMetadata可以创建SAnnotatedGenericBeanDefinition对象
+
