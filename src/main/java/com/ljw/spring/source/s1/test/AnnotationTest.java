@@ -12,6 +12,7 @@ import com.ljw.spring.source.s1.beans.scanbean.metadata.AnnotationMetadataDemo;
 import com.ljw.spring.source.s1.scanner.selector.SelfDefineImportSelectorScannerTest;
 import com.ljw.spring.source.s1.service.TeacherService;
 import org.junit.Test;
+import org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.core.env.Environment;
@@ -240,7 +241,7 @@ public class AnnotationTest {
      */
     @Test
     public void test16() {
-
+//        AbstractAutoProxyCreator
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ScanBean.class);
         TeacherService teacherService = applicationContext.getBean(TeacherService.class);
         teacherService.doTeacherService();
