@@ -32,6 +32,13 @@
             <version>${spring.version}</version>
         </dependency>
 
+        <!-- @Transactional支持 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
         <!-- @Test支持 -->
         <dependency>
             <groupId>junit</groupId>
@@ -76,9 +83,6 @@
             <artifactId>s2-bean</artifactId>
             <version>1.0</version>
         </dependency>
-
-
-
 
 
 

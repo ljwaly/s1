@@ -1,6 +1,7 @@
 package com.ljw.spring.source.s1.test;
 
 import com.ljw.s2.bean.Li;
+import com.ljw.spring.source.s1.aop.special.TransactionDemoService;
 import com.ljw.spring.source.s1.beans.*;
 import com.ljw.spring.source.s1.beans.scanbean.ScanBean;
 import com.ljw.spring.source.s1.beans.scanbean.imports.ImportBeanDefinitionRegistrarDemo;
@@ -241,13 +242,27 @@ public class AnnotationTest {
      */
     @Test
     public void test16() {
-//        AbstractAutoProxyCreator
+
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ScanBean.class);
         TeacherService teacherService = applicationContext.getBean(TeacherService.class);
         teacherService.doTeacherService();
 
     }
 
+
+    /**
+     * Aop
+     * 注解@Transactional支持
+     */
+    @Test
+    public void test17() {
+
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ScanBean.class);
+        TransactionDemoService transactionDemoService = applicationContext.getBean(TransactionDemoService.class);
+        transactionDemoService.doTransNothing();
+        transactionDemoService.doTransEffect();
+
+    }
 
 
 
