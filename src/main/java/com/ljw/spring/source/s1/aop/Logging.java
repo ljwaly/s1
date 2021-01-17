@@ -1,7 +1,9 @@
 package com.ljw.spring.source.s1.aop;
 
 import org.aopalliance.intercept.MethodInvocation;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
@@ -13,6 +15,11 @@ import java.lang.reflect.Method;
 
 @Component
 @Aspect
+/**
+ * 第一层排序
+ * Around.class, Before.class, After.class, AfterReturning.class, AfterThrowing.class
+ *
+ */
 public class Logging {
     /**
      * 将Pointcut和advice组合起来，
@@ -34,6 +41,13 @@ public class Logging {
 
     /**
      * 这个就是advice
+     *
+     * Around-before
+     * Before
+     * 方法
+     * After
+     * Around-after
+     *
      *
      * @param joinPoint
      * @return
@@ -67,5 +81,16 @@ public class Logging {
 
 
         return result;
+    }
+
+
+    /**
+     *
+     * @return
+     * @throws Throwable
+     */
+    @AfterThrowing(value = "pc1()", throwing = "e")
+    public void logAfterThrowing(JoinPoint point, Exception e) {
+        System.out.println("===Logging.logAfterThrowing:Exception=" + e);
     }
 }
