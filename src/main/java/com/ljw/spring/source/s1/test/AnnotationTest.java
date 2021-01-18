@@ -229,7 +229,7 @@ public class AnnotationTest {
      * 全量扫描
      */
     @Test
-    public void test15() {
+    public void test15() throws Exception {
 
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ScanBean.class);
         TeacherService teacherService = applicationContext.getBean(TeacherService.class);
@@ -241,7 +241,7 @@ public class AnnotationTest {
      * Aop
      */
     @Test
-    public void test16() {
+    public void test16() throws Exception {
 
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ScanBean.class);
         TeacherService teacherService = applicationContext.getBean(TeacherService.class);

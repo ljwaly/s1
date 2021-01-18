@@ -9,7 +9,7 @@ public class TeacherService {
     @Autowired
     private Teacher teacher;
 
-    public void doTeacherService(){
+    public void doTeacherService() throws Exception {
         teacher.teaching();
     }
 }

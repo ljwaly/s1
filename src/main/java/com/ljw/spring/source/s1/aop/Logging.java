@@ -75,6 +75,7 @@ public class Logging {
 
         System.out.println("------around-before");
 
+
         Object result = joinPoint.proceed();
 
         System.out.println("------around-after");
@@ -90,7 +91,7 @@ public class Logging {
      * @throws Throwable
      */
     @AfterThrowing(value = "pc1()", throwing = "e")
-    public void logAfterThrowing(JoinPoint point, Exception e) {
-        System.out.println("===Logging.logAfterThrowing:Exception=" + e);
+    public void logAfterThrowing(JoinPoint point, Throwable e) throws Throwable {
+        System.out.println("===Logging.logAfterThrowing:Exception=" + e.getMessage());
     }
 }
