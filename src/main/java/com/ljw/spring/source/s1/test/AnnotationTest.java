@@ -295,6 +295,7 @@ public class AnnotationTest {
     /**
      * Aop；
      * ScopedProxy代理的多例对象
+     *
      */
     @Test
     public void test19() throws Exception {

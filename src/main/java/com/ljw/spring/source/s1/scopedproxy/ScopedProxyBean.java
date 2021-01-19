@@ -29,9 +29,13 @@ import org.springframework.stereotype.Component;
  *
  *          这个FactoryBean对象是在扫描@Component注解的时候，创建的BeanDefinition，初始化进去的，
  *          初始化BeanDefinition，声明了这个BeanDefinition是多例的，
- *          这个FactoryBean对象实现了BeanFactoryAware接口，在初始化Aware接口setBeanFactory的时候，
- *          创建了一个成员变量proxy，是ScopedProxyBean的代理CGLIB代理对象，
- *          proxy还放入了一个切面{@link org.springframework.aop.support.DelegatingIntroductionInterceptor}
+ *          这个FactoryBean对象在进行populateBean，字段初始化的时候，
+ *             对targetBeanName进行了初始化为targetSource.scopedProxyBean
+ *          这个FactoryBean对象实现了BeanFactoryAware接口，
+ *          在初始化Aware接口setBeanFactory的时候，
+ *            创建了一个成员变量proxy，是ScopedProxyBean的代理CGLIB代理对象，
+ *            proxy还放入了一个切面{@link org.springframework.aop.support.DelegatingIntroductionInterceptor}
+ *
  *
  *
  * 当本代理对象proxy被调用的时候，触发代理的拦截器invoke方法，
