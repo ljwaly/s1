@@ -8,18 +8,20 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.aop.interceptor.ExposeInvocationInterceptor;
+import org.springframework.aop.support.AopUtils;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Method;
 
-@Component
-@Aspect
+
 /**
  * 第一层排序
  * Around.class, Before.class, After.class, AfterReturning.class, AfterThrowing.class
  *
  */
+@Component
+@Aspect
 public class Logging {
     /**
      * 将Pointcut和advice组合起来，
@@ -33,8 +35,8 @@ public class Logging {
     /**
      * 这个是切点Pointcut
      */
-    @Pointcut("execution(public * com.ljw.spring.source.s1.service.*.*(..))")
-//    @Pointcut("within(com.ljw.spring.source.s1.service..*) ")
+//    @Pointcut("execution(public * com.ljw.spring.source.s1.service.*.*(..))")
+    @Pointcut("within(com.ljw.spring.source.s1.service..*) ")
     public void pc1() {
     }
 
@@ -69,9 +71,17 @@ public class Logging {
         Object[] arguments = methodInvocation.getArguments();
         AccessibleObject staticPart = methodInvocation.getStaticPart();
 
+        /**
+         * 获取到被代理类的类型
+         */
+        Class<?> targetClass = joinPoint.getThis().getClass();
 
+        /**
+         * 获取到被代理类的真实的方法
+         */
+        Method mostSpecificMethod = AopUtils.getMostSpecificMethod(method, targetClass);
 
-
+        System.out.println("mostSpecificMethod = " + mostSpecificMethod);
 
         System.out.println("------around-before");
 

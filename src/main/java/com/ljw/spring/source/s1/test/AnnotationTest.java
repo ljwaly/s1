@@ -241,6 +241,9 @@ public class AnnotationTest {
 
     /**
      * Aop
+     *
+     * test16会受到
+     * Aop懒加载的影响，SetCustomTargetSourceCreator如果加上@Component，这个16的切面无效
      */
     @Test
     public void test16() throws Exception {

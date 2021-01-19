@@ -8,7 +8,7 @@ public class Teacher {
     public void teaching() throws Exception{
         System.out.println("Teacher.teaching");
         if (!Teacher.class.isAssignableFrom(Object.class)) {
-            throw new Exception();
+//            throw new Exception();
         }
     }
 }
