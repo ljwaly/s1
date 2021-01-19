@@ -11,6 +11,8 @@ import com.ljw.spring.source.s1.beans.scanbean.jconditional.DemoConditionBean;
 import com.ljw.spring.source.s1.beans.scanbean.jconditional.DemoConditionProperty;
 import com.ljw.spring.source.s1.beans.scanbean.metadata.AnnotationMetadataDemo;
 import com.ljw.spring.source.s1.scanner.selector.SelfDefineImportSelectorScannerTest;
+import com.ljw.spring.source.s1.scopedproxy.MyBean;
+import com.ljw.spring.source.s1.service.StudentService;
 import com.ljw.spring.source.s1.service.TeacherService;
 import org.junit.Test;
 import org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator;
@@ -264,9 +266,45 @@ public class AnnotationTest {
 
     }
 
+    /**
+     * Aop-TargetSource
+     * 相当于懒加载
+     */
+    @Test
+    public void test18() throws Exception {
+
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ScanBean.class);
+
+        /**
+         * spring容器中放置的是
+         * StudentService的懒加载的代理类Proxy
+         */
+        StudentService studentService = applicationContext.getBean(StudentService.class);
+        /**
+         * 每次方法调用，都会触发代理类Proxy的invoke方法，
+         * invoke方法执行targetSource.getTarget()获取另一个beanFactory工厂（无AOP）的多例StudentService对象
+         * 代理类获取切面，进行AOP链路调用
+         *
+         * 每次方法调用，都是一个新的StudentService的多例对象，多例对象不存放beanFactory一级缓存容器
+         */
+        studentService.doLeaning();
+        studentService.doLeaning();
+    }
 
 
+    /**
+     * Aop；
+     * ScopedProxy代理的多例对象
+     */
+    @Test
+    public void test19() throws Exception {
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ScanBean.class);
+        MyBean bean = applicationContext.getBean(MyBean.class);
 
+        for (int i = 0; i < 10; i++) {
+            bean.test();
+        }
+    }
 
 
 
