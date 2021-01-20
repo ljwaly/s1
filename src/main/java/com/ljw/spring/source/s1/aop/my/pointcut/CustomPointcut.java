@@ -25,7 +25,24 @@ public class CustomPointcut implements Pointcut, MethodMatcher {
     }
 
     @Override
+    public ClassFilter getClassFilter() {
+
+        /**
+         * 类匹配，直接返回true
+         */
+        return ClassFilter.TRUE;
+    }
+    @Override
+    public MethodMatcher getMethodMatcher() {
+        return this;
+    }
+
+
+    @Override
     public boolean isRuntime() {
+        /**
+         * 返回false，参数匹配不生效
+         */
         return false;
     }
 
@@ -34,13 +51,7 @@ public class CustomPointcut implements Pointcut, MethodMatcher {
         return false;
     }
 
-    @Override
-    public ClassFilter getClassFilter() {
-        return ClassFilter.TRUE;
-    }
 
-    @Override
-    public MethodMatcher getMethodMatcher() {
-        return this;
-    }
+
+
 }

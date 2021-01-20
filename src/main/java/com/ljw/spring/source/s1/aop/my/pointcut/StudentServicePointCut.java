@@ -23,6 +23,9 @@ import java.util.List;
 public class StudentServicePointCut implements Pointcut, MethodMatcher {
     @Override
     public ClassFilter getClassFilter() {
+        /**
+         * 类匹配，直接返回true
+         */
         return ClassFilter.TRUE;
     }
 
@@ -36,6 +39,11 @@ public class StudentServicePointCut implements Pointcut, MethodMatcher {
         //拿原始方法对象，这个方法上才有注解
         Method specificMethod = AopUtils.getMostSpecificMethod(method, targetClass);
 
+        /**
+         * method如果是jdk代理，就是接口，接口上面没有注解
+         *
+         * specificMethod是通过AopUtil拿到的真正的方法
+         */
         if(AnnotatedElementUtils.hasAnnotation(specificMethod, EasyCache.class)) {
 
             boolean annotationPresent = method.isAnnotationPresent(EasyCache.class);
@@ -49,6 +57,9 @@ public class StudentServicePointCut implements Pointcut, MethodMatcher {
 
     @Override
     public boolean isRuntime() {
+        /**
+         * 返回false，参数匹配不生效
+         */
         return false;
     }
 
