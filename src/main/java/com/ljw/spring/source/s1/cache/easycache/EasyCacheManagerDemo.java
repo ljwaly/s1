@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class EasyCacheManagerDemo {
 
-    @EasyCache(key = "1")
+    @EasyCache(key = "#key")
     public String get(String key){
         System.out.println("----进入实际方法：EasyCacheManagerDemo.get");
         return key + "EasyCacheDemo";
