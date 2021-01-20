@@ -10,6 +10,7 @@ import com.ljw.spring.source.s1.beans.scanbean.imports.vo.*;
 import com.ljw.spring.source.s1.beans.scanbean.jconditional.DemoConditionBean;
 import com.ljw.spring.source.s1.beans.scanbean.jconditional.DemoConditionProperty;
 import com.ljw.spring.source.s1.beans.scanbean.metadata.AnnotationMetadataDemo;
+import com.ljw.spring.source.s1.cache.easycache.EasyCacheManagerDemo;
 import com.ljw.spring.source.s1.scanner.selector.SelfDefineImportSelectorScannerTest;
 import com.ljw.spring.source.s1.scopedproxy.MyBean;
 import com.ljw.spring.source.s1.service.StudentService;
@@ -308,6 +309,22 @@ public class AnnotationTest {
         for (int i = 0; i < 10; i++) {
             bean.test();
         }
+    }
+
+    /**
+     * Aop；
+     * 注解@EasyCache增强
+     *
+     */
+    @Test
+    public void test20() throws Exception {
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ScanBean.class);
+        EasyCacheManagerDemo bean = applicationContext.getBean(EasyCacheManagerDemo.class);
+        String ljw = bean.get("ljw");
+        System.out.println("ljw = " + ljw);
+
+        String ljw1 = bean.get("ljw");
+        System.out.println("ljw = " + ljw1);
     }
 
 
