@@ -78,6 +78,11 @@ public class Logging {
 
         /**
          * 获取到被代理类的真实的方法
+         *
+         * 在目标类targetClass中拿到的
+         *   判断方法是否是桥接方法
+         *     如果是：通过方法签名去目标类匹配方法
+         *
          */
         Method mostSpecificMethod = AopUtils.getMostSpecificMethod(method, targetClass);
 
