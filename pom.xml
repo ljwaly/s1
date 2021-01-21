@@ -39,6 +39,13 @@
             <version>${spring.version}</version>
         </dependency>
 
+        <!-- jdbc支持 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
         <!-- @Test支持 -->
         <dependency>
             <groupId>junit</groupId>
