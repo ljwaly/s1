@@ -67,7 +67,7 @@ public class Logging {
         /**
          * 可以获取参数
          */
-        Method method = methodInvocation.getMethod();
+         Method method = methodInvocation.getMethod();
         Object[] arguments = methodInvocation.getArguments();
         AccessibleObject staticPart = methodInvocation.getStaticPart();
 

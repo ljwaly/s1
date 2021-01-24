@@ -3,7 +3,14 @@ package com.ljw.spring.source.s1.test;
 import com.alibaba.fastjson.JSONObject;
 import com.ljw.spring.source.s1.ScanBean;
 import com.ljw.spring.source.s1.poji.ConsultConfigArea;
+import com.ljw.spring.source.s1.poji.ZgGoods;
+import com.ljw.spring.source.s1.service.AccountService;
+import com.ljw.spring.source.s1.service.AccountServiceImpl;
 import com.ljw.spring.source.s1.service.AreaService;
+import com.ljw.spring.source.s1.service.goods.GoodsService;
+import com.ljw.spring.source.s1.service.goods.GoodsServiceImpl;
+import com.ljw.spring.source.s1.service.transaction.TransationService;
+import com.ljw.spring.source.s1.service.transaction.TransationServiceImpl;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -22,4 +29,39 @@ public class TransactionTest {
         List<ConsultConfigArea> consultConfigAreas = bean.queryAreaFromDB(param);
         System.out.println(JSONObject.toJSONString(consultConfigAreas));
     }
+
+    @Test
+    public void test2() {
+        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(ScanBean.class);
+        TransationService bean = (TransationService) applicationContext.getBean("transationServiceImpl");
+
+        ConsultConfigArea ca = new ConsultConfigArea();
+        ca.setAreaCode("HN1");
+        ZgGoods zg = new ZgGoods();
+        zg.setGoodName("Apple1");
+
+        bean.transation(ca, zg);
+    }
+
+    @Test
+    public void test3() {
+        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(ScanBean.class);
+        GoodsService bean = applicationContext.getBean(GoodsService.class);
+
+
+        ZgGoods zg = new ZgGoods();
+        zg.setGoodName("Apple1");
+
+        bean.addGoods(zg);
+    }
+
+    @Test
+    public void test4() {
+        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(ScanBean.class);
+        AccountService bean = (AccountService) applicationContext.getBean("accountServiceImpl");
+
+        bean.queryAccount();
+
+    }
+
 }

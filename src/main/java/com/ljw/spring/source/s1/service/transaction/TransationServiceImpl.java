@@ -9,6 +9,8 @@ import com.ljw.spring.source.s1.service.AreaService;
 import com.ljw.spring.source.s1.service.goods.GoodsService;
 import org.springframework.aop.framework.AopContext;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
@@ -20,7 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Service("transationServiceImpl")
+@Service
 public class TransationServiceImpl implements TransationService {
 
     @Autowired
@@ -35,10 +37,22 @@ public class TransationServiceImpl implements TransationService {
     @Autowired
     TransationService transationService;
 
+    @Autowired
+    private TransactionTemplate transactionTemplate;
+
 
     @Transactional
     @Override
     public void transation(ConsultConfigArea area, ZgGoods zgGoods) {
+
+        /**
+         * 获取连接对象
+         */
+//        ConnectionHolder conHolder =
+//                (ConnectionHolder) TransactionSynchronizationManager.getResource(
+//                        //获取数据源对象，创建DataSourceTransactionManager时候，设置进去的
+//                        obtainDataSource()
+//                );
         /**
          * 多个嵌套方法都有事务属性的话，
          * 最外层做事务提交
@@ -90,8 +104,7 @@ public class TransationServiceImpl implements TransationService {
     }
 
 
-    @Autowired
-    private TransactionTemplate transactionTemplate;
+
 
     @Override
     public int getTicketModeOne() {
