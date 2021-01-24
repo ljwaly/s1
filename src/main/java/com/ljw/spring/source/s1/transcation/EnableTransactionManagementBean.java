@@ -12,7 +12,7 @@ import org.springframework.transaction.support.TransactionTemplate;
 import javax.sql.DataSource;
 
 @Configuration
-@EnableTransactionManagement
+//@EnableTransactionManagement
 // <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 @MapperScan(basePackages = {"com.ljw.spring.source.s1.dao"})
 public class EnableTransactionManagementBean {

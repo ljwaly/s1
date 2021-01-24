@@ -34,6 +34,10 @@ public class AreaServiceImpl implements AreaService {
     @Autowired
     AreaService areaService;
 
+    /**
+     *
+     * 注解@Transactional后面的属性，设置隔离级别，是否只读，传播属性
+     */
     @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = true, rollbackFor = RuntimeException.class)
     @Override
     public List<ConsultConfigArea> queryAreaFromDB(Map param) {

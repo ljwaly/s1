@@ -39,6 +39,10 @@ public class TransationServiceImpl implements TransationService {
     @Transactional
     @Override
     public void transation(ConsultConfigArea area, ZgGoods zgGoods) {
+        /**
+         * 多个嵌套方法都有事务属性的话，
+         * 最外层做事务提交
+         */
         areaService.addArea(area);
         goodsService.addGoods(zgGoods);
     }
