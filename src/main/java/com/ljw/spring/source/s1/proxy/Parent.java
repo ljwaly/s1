@@ -22,10 +22,10 @@ public class Parent implements InvocationHandler {
         /**
          * 调用被代理对象中的方法
          */
-        Object invoke = method.invoke(object, args);
+        Object result = method.invoke(object, args);
 
         after();
-        return invoke;
+        return result;
     }
 
     public void before(){

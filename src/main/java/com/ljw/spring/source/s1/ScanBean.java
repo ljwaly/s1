@@ -1,4 +1,4 @@
-package com.ljw.spring.source.s1.beans.scanbean;
+package com.ljw.spring.source.s1;
 
 
 import com.ljw.spring.source.s1.annotation.BeansScanner;
