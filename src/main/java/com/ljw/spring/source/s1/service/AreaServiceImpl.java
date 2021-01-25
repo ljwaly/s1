@@ -7,12 +7,15 @@ import com.ljw.spring.source.s1.transcation.DoOnAfterCommit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.datasource.ConnectionHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
+import javax.sql.DataSource;
+import java.sql.Connection;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -33,6 +36,9 @@ public class AreaServiceImpl implements AreaService {
 
     @Autowired
     AreaService areaService;
+
+    @Autowired
+    DataSource dateSource;
 
     /**
      *
@@ -69,6 +75,16 @@ public class AreaServiceImpl implements AreaService {
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public int addArea(ConsultConfigArea area) {
+        /**
+         * 获取连接对象
+         */
+        ConnectionHolder conHolder =
+                (ConnectionHolder) TransactionSynchronizationManager.getResource(
+                        //获取数据源对象，创建DataSourceTransactionManager时候，设置进去的
+                        dateSource
+                );
+        Connection connection = conHolder.getConnection();
+        System.out.println("------------connection = " + connection);
         int i = commonMapper.addArea(area);
         return i;
     }
