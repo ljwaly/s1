@@ -12,12 +12,15 @@ import com.ljw.spring.source.s1.beans.scanbean.jconditional.DemoConditionPropert
 import com.ljw.spring.source.s1.beans.scanbean.metadata.AnnotationMetadataDemo;
 import com.ljw.spring.source.s1.cache.easycache.EasyCacheManagerDemo;
 import com.ljw.spring.source.s1.scanner.selector.SelfDefineImportSelectorScannerTest;
+import com.ljw.spring.source.s1.scope.CustomScopeBean;
+import com.ljw.spring.source.s1.scope.PrototypeBeanDemo;
 import com.ljw.spring.source.s1.scopedproxy.MyBean;
 import com.ljw.spring.source.s1.service.StudentService;
 import com.ljw.spring.source.s1.service.TeacherService;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.env.Environment;
 
 /**
@@ -326,6 +329,42 @@ public class AnnotationTest {
         System.out.println("ljw = " + ljw1);
     }
 
+    /**
+     * 自定义Scope类型的验证
+     * Scope默认类型分为单例(SCOPE_SINGLETON)和多例(SCOPE_PROTOTYPE)
+     *
+     * 还可以自定义，自定义的
+     *
+     */
+    @Test
+    public void test21() {
+
+        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(ScanBean.class);
+
+        CustomScopeBean bean = applicationContext.getBean(CustomScopeBean.class);
+
+        System.out.println("bean = " + bean.getUsername());
+
+
+    }
+    /**
+     * 自定义Scope类型的验证
+     * Scope默认类型分为单例(SCOPE_SINGLETON)和多例(SCOPE_PROTOTYPE)
+     *
+     * 还可以自定义，自定义的
+     *
+     */
+    @Test
+    public void test22() {
+
+        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(ScanBean.class);
+
+        PrototypeBeanDemo bean = applicationContext.getBean(PrototypeBeanDemo.class);
+
+        System.out.println("bean = " + bean.getUsername());
+
+
+    }
 
 
 }
