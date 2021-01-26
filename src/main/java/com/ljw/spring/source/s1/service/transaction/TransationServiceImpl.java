@@ -7,6 +7,7 @@ import com.ljw.spring.source.s1.poji.ZgGoods;
 import com.ljw.spring.source.s1.poji.ZgTicket;
 import com.ljw.spring.source.s1.service.AreaService;
 import com.ljw.spring.source.s1.service.goods.GoodsService;
+import com.ljw.spring.source.s1.transcation.transactioneffect.MyTransactionEffter;
 import org.springframework.aop.framework.AopContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,6 +18,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
+import org.springframework.transaction.support.TransactionSynchronization;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 import org.springframework.transaction.support.TransactionTemplate;
 
@@ -59,6 +61,8 @@ public class TransationServiceImpl implements TransationService {
      *  （在REQUIRES_NEW运行时，老的事务对象挂起（解除绑定），而REQUIRES_NEW则自我进行回滚或者提交，在处理完之后，会进行原来的事务对象进行重新绑定）
      *
      *
+     * NESTED: 只是在创建链接状态的时候，创建了回滚点
+     *
      *
      */
     @Transactional
@@ -75,6 +79,17 @@ public class TransationServiceImpl implements TransationService {
                 );
         Connection connection = conHolder.getConnection();
         System.out.println("------------connection = " + connection);
+
+
+        /**
+         * 触发器
+         */
+        List<TransactionSynchronization> synchronizations = TransactionSynchronizationManager.getSynchronizations();
+        for (TransactionSynchronization transactionSynchronization: synchronizations) {
+            transactionSynchronization.afterCommit();
+        }
+
+        TransactionSynchronizationManager.registerSynchronization(new MyTransactionEffter());
 
 
         /**
