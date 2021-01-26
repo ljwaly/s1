@@ -72,7 +72,7 @@ public class AreaServiceImpl implements AreaService {
     }
 
 
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     @Override
     public int addArea(ConsultConfigArea area) {
         /**
