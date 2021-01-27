@@ -2,6 +2,10 @@ package com.ljw.spring.source.s1.jdbc;
 
 import java.sql.*;
 
+
+/**
+ * SavePoint回滚点
+ */
 public class JDBCSavePointTest {
     public static void main(String[] args) {
         Connection connection = null;
@@ -28,6 +32,10 @@ public class JDBCSavePointTest {
     }
     public static void insertTest(Connection con){
         PreparedStatement stmt = null;
+
+        /**
+         * SavePoint回滚点
+         */
         Savepoint a1 = null;
         try {
             stmt = con.prepareStatement("insert into user(username) values (?)");
