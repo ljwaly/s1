@@ -43,8 +43,7 @@ public class TransationServiceImpl implements TransationService {
     @Autowired
     TransationService transationService;
 
-    @Autowired
-    private TransactionTemplate transactionTemplate;
+
 
     @Autowired
     private DataSource dateSource;
@@ -147,10 +146,18 @@ public class TransationServiceImpl implements TransationService {
     }
 
 
-
+    /**
+     * 需要初始化
+     */
+    @Autowired
+    private TransactionTemplate transactionTemplate;
 
     @Override
     public int getTicketModeOne() {
+        /**
+         * 每个execute就是单独的一个事物对象，
+         * 如果是execute执行完毕，那么事物对象就会释放，连接也释放
+         */
         Integer execute = transactionTemplate.execute(status -> {
             //1、获取锁
             List<ZgTicket> zgTickets = commonMapper.queryTicketById("12306");
@@ -158,6 +165,15 @@ public class TransationServiceImpl implements TransationService {
             lockmap.put("ticketId", "12306");
             lockmap.put("version", zgTickets.get(0).getVersion());
             int i = commonMapper.updateLock(lockmap);
+
+            transactionTemplate.execute(status1 -> {
+                        ConsultConfigArea area = new ConsultConfigArea();
+                        area.setAreaCode("HN-status1");
+                        int i1 = areaService.addArea(area);
+                        return  i1;
+                    }
+            );
+
 
             if (i > 0) {
                 //抢票
@@ -173,4 +189,9 @@ public class TransationServiceImpl implements TransationService {
         }
         return 0;
     }
+
+
+
+
+
 }

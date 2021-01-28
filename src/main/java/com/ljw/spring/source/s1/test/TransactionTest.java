@@ -30,6 +30,9 @@ public class TransactionTest {
         System.out.println(JSONObject.toJSONString(consultConfigAreas));
     }
 
+    /**
+     * 事务传播属性
+     */
     @Test
     public void test2() {
         AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(ScanBean.class);
@@ -64,4 +67,17 @@ public class TransactionTest {
 
     }
 
+
+    /**
+     * 编程式事务
+     */
+    @Test
+    public void test5() {
+        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(ScanBean.class);
+        TransationService bean = (TransationService) applicationContext.getBean("transationServiceImpl");
+
+
+
+        bean.getTicketModeOne();
+    }
 }

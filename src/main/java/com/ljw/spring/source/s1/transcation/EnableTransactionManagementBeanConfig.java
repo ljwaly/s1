@@ -15,7 +15,7 @@ import javax.sql.DataSource;
 //@EnableTransactionManagement
 // <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 @MapperScan(basePackages = {"com.ljw.spring.source.s1.dao"})
-public class EnableTransactionManagementBean {
+public class EnableTransactionManagementBeanConfig {
 
     /**
      <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -40,6 +40,13 @@ public class EnableTransactionManagementBean {
         return dtm;
     }
 
+    /**
+     * TransactionTemplate是更搞笑的事物控制
+     * 初始化，需要初始化一个事物管理器
+     *
+     * 编程式事物
+     *
+     */
     @Bean
     public TransactionTemplate transactionTemplate(PlatformTransactionManager platformTransactionManager) {
         TransactionTemplate transactionTemplate = new TransactionTemplate();

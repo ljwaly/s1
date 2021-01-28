@@ -35,7 +35,7 @@ public interface CommonMapper {
     @Select("select * from zg_goods")
     List<ZgGoods> queryAll();
 
-    @Update("update zg_ticket set version=versoin+1 where ticketId = #{ticketId} and version = #{version}")
+    @Update("update zg_ticket set version=version+1 where ticketId = #{ticketId} and version = #{version}")
     int updateLock(Map map);
 
     @Select("select * from zg_ticket where ticketId = #{ticketId}")
