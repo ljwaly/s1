@@ -6,6 +6,7 @@ import com.ljw.spring.source.s1.beans.scanbean.imports.ImportDeferredImportSelec
 import com.ljw.spring.source.s1.beans.scanbean.imports.ImportSelectorDemo;
 import com.ljw.spring.source.s1.beans.scanbean.imports.ImportBeanDefinitionRegistrarDemo;
 import com.ljw.spring.source.s1.beans.scanbean.imports.ImportWithNothing;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.*;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -17,6 +18,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @PropertySource({"classpath:ljwcondition.properties"})
 @EnableAspectJAutoProxy(exposeProxy = true)
 @EnableTransactionManagement//事务支持
+@EnableCaching
 //@ImportResource("classpath:spring.xml")//基本上用不到，现在基本上都是基于注解
 public class ScanBean {
 }
